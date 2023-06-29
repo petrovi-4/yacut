@@ -1,22 +1,19 @@
-{% extends "base.html" %}
-{% block title %}404. Страница не найдена.{% endblock title %}
+{% extends 'base.html' %} 
+{% block title %}404. Страница не найдена.{% endblock %}
 {% block content %}
 <main>
-    <section class="container my-5 px-4">
-      <h1 class="text-center"><span style="color:red">Ya</span>Cut</h1>
-      <div class="container">
-        <div class="row ">
-          <div class="col-sm">
-          </div>
-          <div class="col-sm">
-            <h5 class="text-center">Ошибка 404. Нет такой страницы.</h5>
-            <p class="text-center"><a href="{{ url_for('add_link_view') }}">Вернуться на главную</a></p>
-          </div>
-          <div class="col-sm">
-          </div>
-        </div>
+  <section class="container my-5">
+    <div class="row">
+      <div class="col-12 col-lg-7 my-5">
+        <h2 class="mb-5">Ошибка, страница не найдена!</h2>
+        <p>
+          <a href="{{ url_for('index_view') }}">Вернуться на главную</a>
+        </p>
       </div>
-  
-    </section>
-  </main>
-{% endblock %}
+      <div class="col-12 col-lg-4">
+        <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='img/404.png') }}" alt="" />
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %} 
