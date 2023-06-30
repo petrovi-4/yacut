@@ -12,7 +12,8 @@ def index_view():
     if form.validate_on_submit():
         original_link = form.original_link.data
         custom_id = form.custom_id.data
-        if custom_id and URLMap.query.filter_by(short=custom_id).first() is not None:
+        if custom_id and URLMap.query.filter_by(
+            short=custom_id).first() is not None:
             flash(f'Имя {custom_id} уже занято!')
             return redirect(url_for('index_view'))
 

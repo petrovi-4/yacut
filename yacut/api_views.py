@@ -13,16 +13,22 @@ from .generator import get_unique_short_id
 def add_url():
     pattern_short = r'^[A-Za-z0-9_]{1,16}$'
     data = request.get_json()
+
     if data is None:
         raise InvalidAPIUsage('Отсутствует тело запроса')
+
     if 'url' not in data:
         raise InvalidAPIUsage('"url" является обязательным полем!')
+
     if not data.get('custom_id'):
         data['custom_id'] = get_unique_short_id()
+
     if not match(pattern_short, data['custom_id']):
         raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
+
     if URLMap.query.filter_by(short=data['custom_id']).first():
         raise InvalidAPIUsage(f'Имя "{data["custom_id"]}" уже занято.')
+
     url_map = URLMap()
     url_map.from_dict(data)
     db.session.add(url_map)
